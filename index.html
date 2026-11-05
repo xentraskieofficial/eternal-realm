@@ -1,102 +1,31 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#171b18">
-  <title>Eternal Realm — 2D Pixel MMORPG</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#101820">
+<title>Eternal Realm — Rune Resonance</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="game-shell">
-    <header class="topline">
-      <div class="brand"><span class="brand-mark">✦</span><div><b>ETERNAL REALM</b><small>REALM OF THE ANCIENTS</small></div></div>
-      <div class="server"><i></i> REALM: ETERNAL REALM <span>•</span> ONLINE: <b id="onlineCount">1,284</b></div>
-      <button class="icon-btn" id="soundBtn" aria-label="Toggle sound">♫</button>
-    </header>
-
-    <section class="game-layout">
-      <div class="world-wrap">
-        <div class="world-top"><span>WHISPERING WOODS</span><span id="coords">X: 12 · Y: 08</span></div>
-        <canvas id="game" width="640" height="400" aria-label="Game world"></canvas>
-        <div class="world-hint"><span class="key">WASD</span> MOVE <span class="dot">•</span> <span class="key">E</span> INTERACT <span class="dot">•</span> <span class="key">ENTER</span> CHAT</div>
-        <div class="mobile-controls" aria-label="Mobile movement controls">
-          <button data-move="up">▲</button>
-          <div><button data-move="left">◀</button><button data-move="down">▼</button><button data-move="right">▶</button></div>
-        </div>
-      </div>
-
-      <aside class="side-column">
-        <section class="panel player-panel">
-          <div class="avatar">⚔</div>
-          <div class="player-info"><b>ARTHUR <em>LV. 12</em></b><small>[MOSS] Wandering Souls</small>
-            <div class="bar-label">HP <span id="hpText">156 / 180</span></div><div class="bar hp"><i id="hpBar"></i></div>
-            <div class="bar-label">MP <span>82 / 120</span></div><div class="bar mp"><i></i></div>
-            <div class="bar-label">EXP <span>680 / 900</span></div><div class="bar xp"><i></i></div>
-          </div>
-        </section>
-
-        <section class="panel minimap-panel">
-          <div class="panel-title">WORLD MAP <span>⌖</span></div>
-          <div class="minimap" id="minimap"><span class="map-player"></span><span class="map-town"></span></div>
-          <div class="map-legend"><span><i class="you"></i>You</span><span><i class="town"></i>Village</span></div>
-        </section>
-
-        <section class="panel quest-panel">
-          <div class="panel-title">QUEST TRACKER <span>◇</span></div>
-          <b class="quest-name">The Lost Merchant</b>
-          <p>Find the merchant near the old bridge.</p>
-          <div class="quest-step"><span>○</span> Speak to the village guard <b>0/1</b></div>
-          <div class="reward">REWARD <strong>250 XP</strong> <strong>40 GOLD</strong></div>
-        </section>
-
-        <section class="panel party-panel">
-          <div class="panel-title">YOUR PARTY <span>3/4</span></div>
-          <div class="party-member"><i class="member-icon mage">✧</i><span><b>LUNA</b><small>LV. 12 · Mage</small><div class="mini-bar"><i style="width:85%"></i></div></span><em>85%</em></div>
-          <div class="party-member"><i class="member-icon rogue">♜</i><span><b>KAEL</b><small>LV. 11 · Rogue</small><div class="mini-bar"><i style="width:68%"></i></div></span><em>68%</em></div>
-          <div class="party-member"><i class="member-icon cleric">✚</i><span><b>MIRA</b><small>LV. 10 · Cleric</small><div class="mini-bar"><i style="width:96%"></i></div></span><em>96%</em></div>
-        </section>
-      </aside>
-    </section>
-
-    <section class="bottom-layout">
-      <section class="panel chat-panel">
-        <div class="chat-tabs"><button class="active" data-channel="WORLD">WORLD</button><button data-channel="PARTY">PARTY</button><button data-channel="GUILD">GUILD</button><button data-channel="WHISPER">WHISPER</button></div>
-        <div class="chat-messages" id="chatMessages">
-          <p><b class="world-tag">[WORLD]</b> <strong>Luna:</strong> Anyone doing forest quest?</p>
-          <p><b class="party-tag">[PARTY]</b> <strong>Kael:</strong> Meet at the old bridge.</p>
-          <p><b class="guild-tag">[GUILD]</b> <strong>Mira:</strong> Welcome to the realm!</p>
-        </div>
-        <form id="chatForm"><span id="chatChannel">[WORLD]</span><input id="chatInput" autocomplete="off" placeholder="Press Enter to chat..."><button>➤</button></form>
-      </section>
-      <section class="panel hotbar-panel">
-        <div class="panel-title">SKILLS & ITEMS <small>1 — 8</small></div>
-        <div class="hotbar">
-          <button class="slot selected" data-skill="Basic attack"><span>⚔</span><small>1</small></button>
-          <button class="slot" data-skill="Power strike"><span>✹</span><small>2</small></button>
-          <button class="slot" data-skill="Shield wall"><span>⬟</span><small>3</small></button>
-          <button class="slot" data-skill="Healing potion"><span>♜</span><small>4</small></button>
-          <button class="slot" data-skill="Fire rune"><span>✧</span><small>5</small></button>
-          <button class="slot" data-skill="Frost rune"><span>❄</span><small>6</small></button>
-          <button class="slot" data-skill="Empty slot"><span>·</span><small>7</small></button>
-          <button class="slot" data-skill="Empty slot"><span>·</span><small>8</small></button>
-        </div>
-        <div class="skill-status" id="skillStatus">BASIC ATTACK READY</div>
-      </section>
-      <section class="panel currency-panel"><div><small>GOLD</small><b>12,450</b></div><div><small>GEMS</small><b class="gems">320</b></div><button id="inventoryBtn">▤ INVENTORY</button></section>
-    </section>
-    <footer><span>ETERNAL REALM MMORPG <i>v0.1.0 ALPHA</i></span><span>DEMO PROTOTYPE · MULTIPLAYER UI SIMULATION</span></footer>
-  </main>
-
-  <div class="toast" id="toast"></div>
-  <div class="modal-backdrop" id="inventoryModal">
-    <div class="modal panel"><button class="modal-close" id="closeModal">×</button><div class="panel-title">INVENTORY <span>12 / 30 SLOTS</span></div>
-      <div class="inventory-grid">
-        <div>⚔<small>Iron Sword</small></div><div>🛡<small>Oak Shield</small></div><div>🧪<small>Health Potion ×3</small></div><div>✧<small>Forest Rune</small></div>
-        <div class="empty"></div><div class="empty"></div><div class="empty"></div><div class="empty"></div>
-      </div>
-    </div>
-  </div>
-  <script src="game.js"></script>
+<div class="app">
+<header class="top"><div class="brand">✦ ETERNAL REALM<small>RUNE RESONANCE · ACTION RPG</small></div><div class="topright"><span class="save-state" id="saveState">● Autosave</span><span class="level-chip">LV <b id="level">1</b></span></div></header>
+<div class="game-layout">
+<aside class="sidebar">
+<section class="panel profile"><div class="profile-head"><div class="portrait">♙</div><div><div class="profile-name">Rune Wanderer</div><div class="profile-sub">Verdant Fields Explorer</div></div></div>
+<div class="meter"><div class="meter-top"><b>HEALTH</b><span id="hpText"></span></div><div class="bar hp"><i id="hp"></i></div></div>
+<div class="meter"><div class="meter-top"><b>MANA</b><span id="mpText"></span></div><div class="bar mp"><i id="mp"></i></div></div>
+<div class="meter"><div class="meter-top"><b>EXPERIENCE</b><span id="xpText"></span></div><div class="bar xp"><i id="xp"></i></div></div>
+<div class="meter"><div class="meter-top"><b>RUNE RESONANCE</b><span id="resText"></span></div><div class="bar res"><i id="res"></i></div></div>
+<div class="quick-stats"><div class="quick-stat"><span>⚔ Power</span><b id="atk"></b></div><div class="quick-stat"><span>◈ Gold</span><b id="gold"></b></div><div class="quick-stat"><span>✧ Shards</span><b id="shards"></b></div><div class="quick-stat"><span>🧪 Potions</span><b id="potions"></b></div></div></section>
+<section class="panel quest-card"><div class="section-label">FIELD OBJECTIVE</div><p id="questDesc">Temui Elder Rowan untuk mengambil quest Slime Menace.</p><div class="quest-progress"><i id="questBar"></i></div></section>
+</aside>
+<main class="main">
+<div class="world-head"><div><h1>Verdant Fields</h1><p>Zone 01 · The Frontier</p></div><span class="zone" id="zone">Elder's Meadow</span></div>
+<div class="world-frame"><canvas id="world" width="800" height="500" aria-label="Dunia game Eternal Realm"></canvas><div class="world-overlay"><span class="world-tag">FIELD 01</span><span class="world-tag" id="worldStatus">EXPLORATION</span></div><div class="world-tools"><button class="icon-btn" id="help" aria-label="Petunjuk kontrol" title="Petunjuk">?</button><button class="icon-btn" id="pause" aria-label="Pause game" title="Pause">Ⅱ</button></div></div>
+<div class="controls"><div class="skill-row"><button class="skill primary" id="attack"><span class="skill-name">⚔ Slash</span><span class="skill-key">SPACE</span></button><button class="skill fire" id="fire"><span class="skill-name">🔥 Ember</span><span class="skill-key">Q · 14 MP</span></button><button class="skill frost" id="frost"><span class="skill-name">❄ Frost</span><span class="skill-key">R · 12 MP</span></button><button class="skill" id="dash"><span class="skill-name">➤ Dash</span><span class="skill-key">SHIFT</span></button></div><div class="utility-row"><button class="utility" id="potion">🧪 1</button><button class="utility" id="interact">✧ F</button><button class="utility" id="save">▣</button></div></div>
+<div class="mobile-controls"><div class="dpad"><span class="empty"></span><button data-move="up" aria-label="Bergerak ke atas">▲</button><span class="empty"></span><button data-move="left" aria-label="Bergerak ke kiri">◀</button><button data-move="down" aria-label="Bergerak ke bawah">▼</button><button data-move="right" aria-label="Bergerak ke kanan">▶</button></div><div class="mobile-actions"><button class="big" id="touchAttack">⚔ ATTACK</button><button class="fire" id="touchFire">🔥</button><button class="frost" id="touchFrost">❄</button><button id="touchDash">DASH</button><button id="touchPotion">🧪</button></div></div>
+<div class="lower"><section class="panel info-card"><h2>✧ RUNE RESONANCE</h2><p>Cast Ember and Frost within 5 seconds to build resonance. At 100, release an arcane burst against nearby enemies.</p><p class="tip">Tip: Frost slows enemies. Save your dash for heavy attacks.</p></section><section class="panel info-card"><h2>ADVENTURE LOG</h2><div class="log" id="log" aria-live="polite">Welcome, Rune Wanderer.</div></section></div>
+</main></div></div>
+<div class="modal-backdrop" id="modal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><h2 id="modalTitle">Paused</h2><div id="modalBody"></div><div class="modal-actions" id="modalActions"></div></section></div>
+<script src="game.js"></script>
 </body>
 </html>

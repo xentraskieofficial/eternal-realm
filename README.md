@@ -1,19 +1,35 @@
-# Eternal Realm — 2D Pixel MMORPG Prototype
+# Eternal Realm — Rune Resonance
 
-Prototype front-end berbasis HTML, CSS, dan JavaScript vanilla.
+Game action-RPG 2D berbasis HTML Canvas, CSS, dan JavaScript vanilla. Tidak memerlukan framework atau proses build.
 
-## Menjalankan
-1. Ekstrak folder.
-2. Buka `index.html` di browser, atau jalankan local server:
-   `python -m http.server 8000`
-3. Buka `http://localhost:8000`.
+## Mekanik yang sudah aktif
+- Gerakan karakter real-time dengan WASD / tombol panah.
+- Serangan melee (Space) dengan jangkauan area.
+- Ember (Q) dan Frost (R) sebagai projectile magic; Frost memperlambat musuh.
+- Rune Resonance: gunakan Ember dan Frost secara berurutan dalam 5 detik untuk mengisi meter dan memicu ledakan area.
+- Dash (Shift) dengan cooldown dan potion (1) untuk memulihkan HP.
+- AI musuh: Slime dan Brute mengejar lalu menyerang; Wisp menjaga jarak dan menembakkan projectile.
+- Quest Elder Rowan, peti harta, shrine pemulih, XP, level-up, gold, shards, dan autosave di browser.
+- Monster akan muncul kembali setelah beberapa saat agar area tetap bisa dimainkan.
+- Kontrol layar sentuh untuk perangkat mobile.
 
 ## Kontrol
-- WASD / Arrow keys: gerak
-- E: interaksi dengan NPC
-- Enter: fokus chat
-- 1–8: pilih skill
-- I: buka inventory
-- Tombol arah di layar: kontrol mobile
+| Aksi | Keyboard |
+|---|---|
+| Bergerak | WASD / Arrow |
+| Serangan melee | Space |
+| Ember | Q |
+| Frost | R |
+| Dash | Shift |
+| Potion | 1 |
+| Interaksi | F |
+| Pause | Esc |
 
-Catatan: ini adalah prototype frontend single-player dengan simulasi UI MMORPG. Sistem multiplayer online sungguhan memerlukan backend server, autentikasi, sinkronisasi posisi, chat realtime, database, dan otoritas game server.
+## Menjalankan
+Buka index.html di browser atau jalankan server lokal:
+python -m http.server 8000
+
+Kemudian buka http://localhost:8000.
+
+## Catatan
+Ini adalah prototype single-player. Chat, party, sinkronisasi pemain, akun, dan multiplayer online belum diimplementasikan.
