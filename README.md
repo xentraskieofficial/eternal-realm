@@ -1,21 +1,28 @@
-# Eternal Realm — Pixel Adventure
+# Eternal Realm — Rune Resonance
 
-Game RPG 2D bergaya pixel yang berjalan langsung di browser menggunakan HTML, CSS, dan JavaScript murni.
+A browser-based top-down action RPG built with vanilla HTML, CSS, JavaScript and Canvas. No build step or external dependencies.
 
-## Cara bermain
-- Gerak: WASD atau tombol panah
-- Serang: Space
-- Interaksi: E
-- Gunakan potion: 1
-- Mobile: gunakan tombol arah dan tombol aksi di layar
+## Controls
+- Move: WASD / Arrow keys
+- Slash: Space
+- Ember projectile: Q (14 mana)
+- Frost projectile: R (12 mana; slows enemies)
+- Dash: Shift
+- Interact: F
+- Heal: 1
+- Mobile: on-screen D-pad and action buttons
 
-## Fitur
-- Dunia top-down dan karakter pixel yang digambar dengan Canvas
-- Musuh slime yang mengejar pemain
-- Pertarungan, HP, XP, level, gold, dan potion
-- NPC Elder Rowan dan quest mengalahkan lima slime
-- Penyimpanan otomatis di browser (localStorage)
-- Kontrol keyboard dan mobile
+## Signature mechanic: Rune Resonance
+Cast Ember and Frost within five seconds of each other to link the runes. Build resonance; at 100, trigger an area burst that damages nearby enemies.
 
-## GitHub Pages
-Repository ini dapat dipublikasikan melalui **Settings → Pages → Deploy from a branch → main → /(root)**.
+## Other mechanics
+- Three enemy roles: melee Slime, ranged Wisp, and heavy Brute
+- Enemy projectiles and Frost slow
+- Elder Rowan quest, reward chest, one-use healing shrine
+- XP, levels, gold, shards, potions, mana, and autosave
+
+## Run locally
+Open index.html in a modern browser.
+
+## Publish
+GitHub Pages can serve this static project from the main branch root.
