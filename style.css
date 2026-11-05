@@ -10,3 +10,39 @@
 @media(max-width:850px){.app{padding:13px}.game-layout{grid-template-columns:1fr}.sidebar{grid-template-columns:1fr 1fr;align-items:stretch}.profile{grid-column:span 1}.quest-card{grid-column:span 1}.controls{grid-template-columns:1fr}.utility-row{justify-content:flex-end}.skill{min-height:54px}.lower{grid-template-columns:1fr 1fr}}
 @media(max-width:580px){.app{padding:10px 9px 20px}.top{margin-bottom:11px}.brand{font-size:14px}.brand small{font-size:8px}.save-state{font-size:9px;padding:6px 8px}.level-chip{font-size:10px;padding:6px 8px}.game-layout{gap:10px}.sidebar{grid-template-columns:1fr}.profile{padding:11px}.profile-head{margin-bottom:8px}.profile .meter{margin:8px 0}.quick-stats{margin-top:9px;gap:6px}.quick-stat{padding:7px}.quick-stat b{font-size:13px}.quest-card{padding:10px}.quest-card p{margin-top:5px;font-size:11px}.world-head{align-items:center}.world-head h1{font-size:18px}.world-head p{font-size:10px}.zone{font-size:9px;padding:5px 8px}.world-frame{padding:3px;border-radius:10px}.world-overlay{top:8px;left:8px}.world-tag{font-size:8px;padding:4px 6px}.world-tools{top:7px;right:7px}.icon-btn{min-width:34px;min-height:34px}.controls{display:none}.mobile-controls{display:grid;grid-template-columns: minmax(120px,.85fr) minmax(0,1.4fr);gap:9px;margin-top:10px;align-items:center}.dpad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;max-width:174px}.dpad button{height:43px;min-width:0;border:1px solid #46554e;background:linear-gradient(180deg,#2a3a35,#1a2928);border-radius:9px;font-size:17px}.dpad .empty{visibility:hidden}.mobile-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.mobile-actions button{min-height:47px;border:1px solid #48534a;background:#26352f;border-radius:10px;font-size:11px;font-weight:800}.mobile-actions button.fire{border-color:#895742}.mobile-actions button.frost{border-color:#4c7e91}.mobile-actions button.big{grid-column:span 2;background:#4b412b;border-color:#987b48}.lower{grid-template-columns:1fr;gap:8px;margin-top:9px}.info-card{padding:11px}.log{height:64px}}
 @media(hover:hover) and (pointer:fine){button:hover{filter:brightness(1.12)}}
+
+html,body{width:100%;height:100%;overflow:hidden;background:#10160f}
+body{padding:0;margin:0}
+.app{width:100vw;height:100dvh;max-width:none;margin:0;padding:0;overflow:hidden}
+.game-layout,.main{display:block;width:100%;height:100%;min-width:0}
+.world-frame{position:absolute;inset:0;border:0;border-radius:0;padding:0;box-shadow:none;background:#18251a}
+#world{width:100%;height:100%;border-radius:0;object-fit:cover;image-rendering:pixelated}
+.hud-top{position:absolute;z-index:3;top:max(10px,env(safe-area-inset-top));left:12px;right:12px;display:flex;align-items:center;gap:12px;padding:8px 12px;background:#111a16c9;border:1px solid #b6c89a44;border-radius:12px;backdrop-filter:blur(8px);pointer-events:none}
+.mini-status{display:flex;gap:12px;font-size:12px;color:#eee6cd;white-space:nowrap}
+.mini-status b,.mini-gold{color:#f1cb73}.mini-bars{display:flex;flex-direction:column;gap:4px;flex:1;max-width:300px}.mini-bars .bar{height:6px;margin:0}.mini-gold{font-size:13px}
+.world-tools{top:auto;right:12px;bottom:calc(130px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;z-index:6}
+.icon-btn{min-width:40px;min-height:40px;border-radius:12px;background:#101a16d9;border:1px solid #c5d0aa66}
+.controls{position:absolute;z-index:5;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));display:flex;justify-content:center;align-items:end;gap:10px;margin:0;pointer-events:none}
+.skill-row{pointer-events:auto;max-width:520px;flex:1}.skill{min-height:56px;background:#111b17e8;border-radius:13px}.utility-row{pointer-events:auto;display:flex;align-items:end;gap:6px}.utility{min-width:44px;min-height:48px;border-radius:12px;background:#101a16e8}.mini-xp{display:flex;flex-direction:column;gap:4px;color:#f4d38b;font-size:10px;min-width:70px}.mini-xp>.bar{width:100%;height:5px;margin:0}
+.mobile-controls{display:block;position:absolute;z-index:5;left:18px;bottom:calc(96px + env(safe-area-inset-bottom));margin:0}
+.dpad{display:grid;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,48px);gap:4px;touch-action:none}
+.dpad button{width:48px;height:48px;border-radius:50%;border:1px solid #d5e1bd80;background:#17241dc9;color:#f3e8c9;font-size:20px;touch-action:none}
+.dpad .empty{visibility:hidden}
+.mobile-actions{display:none}
+.inventory-drawer{position:absolute;z-index:9;right:12px;top:70px;width:min(300px,calc(100vw - 24px));padding:12px;background:#121d18ee;border:1px solid #adba8a;border-radius:14px;display:none;backdrop-filter:blur(10px)}
+.inventory-drawer.open{display:block}.drawer-head{display:flex;justify-content:space-between;color:#e9c879;font-weight:800;margin-bottom:12px}.drawer-head button{background:transparent;border:0;color:white;font-size:23px}
+.inventory-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.inventory-slots div{height:52px;display:grid;place-items:center;background:#28382d;border:1px solid #657653;border-radius:7px;color:#f3d18b;font-size:22px}
+.modal-backdrop{z-index:15}.modal{border-radius:14px}
+@media(max-width:700px){
+  .controls{left:auto;right:12px;bottom:calc(16px + env(safe-area-inset-bottom));width:min(53vw,270px);display:flex;flex-direction:column;align-items:stretch;gap:7px}
+  .skill-row{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;max-width:none}
+  .skill{min-height:48px;padding:6px 8px}.skill-name{font-size:11px}.skill-key{font-size:8px}
+  .utility-row{justify-content:flex-end}.utility{min-width:40px;min-height:42px}.mini-xp{min-width:55px}
+  .mobile-controls{left:10px;bottom:calc(22px + env(safe-area-inset-bottom))}
+  .dpad{grid-template-columns:repeat(3,43px);grid-template-rows:repeat(3,43px);gap:3px}
+  .dpad button{width:43px;height:43px;font-size:18px;background:#17241de8}
+  .world-tools{bottom:calc(230px + env(safe-area-inset-bottom));right:10px}
+  .hud-top{top:max(8px,env(safe-area-inset-top));left:8px;right:8px;padding:7px 9px}
+  .mini-status{gap:7px;font-size:11px}.mini-bars{max-width:none}
+}
+@media(min-width:701px){.mobile-controls{display:none}}
