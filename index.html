@@ -6,10 +6,9 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="app">
+<div class="app"><span hidden id="worldStatus"></span><span hidden id="saveState"></span>
 <div class="game-layout">
 <main class="main">
-<span class="zone" id="zone">Elder's Meadow</span></div>
 <div class="world-frame"><canvas id="world" width="800" height="500" aria-label="Dunia game Eternal Realm"></canvas><div class="world-tools"><button class="icon-btn" id="inventoryToggle" aria-label="Inventory" title="Inventory">▤</button><button class="icon-btn" id="help" aria-label="Petunjuk kontrol" title="Petunjuk">?</button><button class="icon-btn" id="pause" aria-label="Pause game" title="Pause">Ⅱ</button></div></div>
 <div class="hud-top"><div class="mini-status"><span>LV <b id="level">1</b></span><span id="hpText">110 / 110</span><span id="mpText">60 / 60</span></div><div class="mini-bars"><div class="bar hp"><i id="hp"></i></div><div class="bar mp"><i id="mp"></i></div></div><span class="mini-gold">◈ <b id="gold">30</b></span></div>
 <div class="controls"><div class="skill-row"><button class="skill primary" id="attack"><span class="skill-name">⚔ Slash</span><span class="skill-key">SPACE</span></button><button class="skill fire" id="fire"><span class="skill-name">🔥 Ember</span><span class="skill-key">Q · 14 MP</span></button><button class="skill frost" id="frost"><span class="skill-name">❄ Frost</span><span class="skill-key">R · 12 MP</span></button><button class="skill" id="dash"><span class="skill-name">➤ Dash</span><span class="skill-key">SHIFT</span></button></div><div class="utility-row"><button class="utility" id="potion">🧪</button><button class="utility" id="interact">✧</button><button class="utility" id="save">▣</button><span class="mini-xp"><b id="xpText">0 / 65</b><i class="bar xp"><i id="xp"></i></i></span><span hidden id="resText">0 / 100</span><span hidden id="atk"></span><span hidden id="shards"></span><span hidden id="potions"></span><span hidden id="questDesc"></span><span hidden id="questBar"></span></div></div>
