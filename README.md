@@ -1,28 +1,19 @@
-# Eternal Realm — Rune Resonance
+# Eternal Realm — 2D Pixel MMORPG Prototype
 
-A browser-based top-down action RPG built with vanilla HTML, CSS, JavaScript and Canvas. No build step or external dependencies.
+Prototype front-end berbasis HTML, CSS, dan JavaScript vanilla.
 
-## Controls
-- Move: WASD / Arrow keys
-- Slash: Space
-- Ember projectile: Q (14 mana)
-- Frost projectile: R (12 mana; slows enemies)
-- Dash: Shift
-- Interact: F
-- Heal: 1
-- Mobile: on-screen D-pad and action buttons
+## Menjalankan
+1. Ekstrak folder.
+2. Buka `index.html` di browser, atau jalankan local server:
+   `python -m http.server 8000`
+3. Buka `http://localhost:8000`.
 
-## Signature mechanic: Rune Resonance
-Cast Ember and Frost within five seconds of each other to link the runes. Build resonance; at 100, trigger an area burst that damages nearby enemies.
+## Kontrol
+- WASD / Arrow keys: gerak
+- E: interaksi dengan NPC
+- Enter: fokus chat
+- 1–8: pilih skill
+- I: buka inventory
+- Tombol arah di layar: kontrol mobile
 
-## Other mechanics
-- Three enemy roles: melee Slime, ranged Wisp, and heavy Brute
-- Enemy projectiles and Frost slow
-- Elder Rowan quest, reward chest, one-use healing shrine
-- XP, levels, gold, shards, potions, mana, and autosave
-
-## Run locally
-Open index.html in a modern browser.
-
-## Publish
-GitHub Pages can serve this static project from the main branch root.
+Catatan: ini adalah prototype frontend single-player dengan simulasi UI MMORPG. Sistem multiplayer online sungguhan memerlukan backend server, autentikasi, sinkronisasi posisi, chat realtime, database, dan otoritas game server.
