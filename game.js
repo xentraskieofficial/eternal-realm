@@ -5,7 +5,7 @@ const npc={x:220,y:140};let keys=new Set(),last=0,slash=0,projectiles=[],particl
 const dashState={cd:0};let spawnTimer=0,nextEnemyId=6;const terrainAtlas=new Image();fetch('./assets/terrain-atlas.webp.b64').then(r=>r.text()).then(b64=>{terrainAtlas.src='data:image/webp;base64,'+b64.trim()}).catch(()=>log('Terrain atlas gagal dimuat; memakai fallback.'));
 const enemies=[{id:1,type:'slime',x:380,y:140,hp:42,max:42,alive:true,cd:0,slow:0},{id:2,type:'slime',x:500,y:180,hp:42,max:42,alive:true,cd:0,slow:0},{id:3,type:'wisp',x:620,y:120,hp:35,max:35,alive:true,cd:1,slow:0},{id:4,type:'slime',x:540,y:360,hp:42,max:42,alive:true,cd:0,slow:0},{id:5,type:'brute',x:690,y:360,hp:125,max:125,alive:true,cd:1,slow:0}];
 const chest={x:730,y:90},shrine={x:100,y:420};
-function log(s){const el=$('log'),line=document.createElement('div');line.textContent=s;el.prepend(line);while(el.children.length>12)el.lastChild.remove()}
+function log(s){const el=$('log');if(!el){console.info('[Eternal Realm]',s);return}const line=document.createElement('div');line.textContent=s;el.prepend(line);while(el.children.length>12)el.lastChild.remove()}
 function bar(id,v,max){const el=$(id);if(el)el.style.width=Math.max(0,Math.min(100,v/max*100))+'%'}
 function ui(){
 $('hpText').textContent=p.hp+' / '+p.max;$('mpText').textContent=p.mp+' / '+p.maxMp;$('xpText').textContent=p.xp+' / '+(p.level*65);$('resText').textContent=p.resonance+' / 100';
