@@ -1,19 +1,28 @@
-# Eternal Realm — Arena Strike
+# Eternal Realm — Tactical 5v5
 
-A browser-based 3D low-poly first-person shooter prototype built with Three.js and vanilla JavaScript.
+A browser-based tactical FPS prototype inspired by competitive hero shooters, built with Three.js.
 
-## Play
-Open `index.html` in a modern browser with an internet connection (Three.js is loaded from jsDelivr). GitHub Pages can host the project as a static site.
+## Current build
 
-## Modes
-- **Singleplayer:** playable arena with first-person movement, mouse look, shooting, reload, health, ammo, enemy AI, score, and respawning targets.
-- **Multiplayer:** selectable menu placeholder only. Online matchmaking and real networked players are not implemented yet.
+- First-person 3D arena with A and B bomb sites, cover, buildings, lighting, and fog.
+- 5v5 match structure: player plus four allied AI agents versus five enemy AI agents.
+- Basic bot combat: target selection, line-of-sight checks, movement, firing, and damage.
+- Round scoring, attack/defense win conditions, player health and armor.
+- Spike planting interaction at either site and a timed detonation objective.
+- Buy phase with Classic, Spectre, Vandal, Phantom, Operator, and heavy shield.
+- Desktop controls and touch controls for mobile browsers.
+- Practice mode.
 
 ## Controls
-- **Desktop:** WASD to move, mouse to look, left click to fire, R to reload, Space to jump, Esc to pause.
-- **Mobile:** left virtual stick to move, drag the right side of the screen to look, FIRE to shoot, RELOAD to reload.
 
-## Tech
-- Three.js 0.160.0
-- HTML, CSS, vanilla JavaScript
-- No build step required
+**Desktop:** WASD move, mouse aim, left click fire, R reload, E hold to plant, B opens buy phase, Shift sprint, Space jump, Esc releases mouse.
+
+**Mobile:** left joystick move, drag the right side to aim, FIRE to shoot, R to reload, USE to plant.
+
+## Run locally
+
+Open `index.html` through a local web server. Three.js is loaded from jsDelivr, so an internet connection is required.
+
+## Notes
+
+This is an evolving single-player-vs-AI prototype. It is not an online multiplayer game yet. Bot navigation and combat are foundational systems and will need further balancing and pathfinding improvements.
