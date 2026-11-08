@@ -163,10 +163,10 @@ function shoot(){if(phase!=='live'||reloadLeft>0)return;const t=performance.now(
  ray.setFromCamera(new THREE.Vector2(0,0),camera);const candidates=[];agents.forEach(a=>{if(a.userData.team==='def'&&a.userData.alive)a.traverse(o=>{if(o.isMesh)candidates.push(o)})});
  const hits=ray.intersectObjects(candidates,false);if(hits.length){const h=hits[0],target=agents.find(a=>a===h.object.parent||a.children.includes(h.object)||a.getObjectById(h.object.id));if(target){hitAgent(target,weaponDamage,true);makeTracer(camera.position,h.point,C.gold)}}else{const dir=new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion);makeTracer(camera.position,camera.position.clone().add(dir.multiplyScalar(28)),C.gold)}}
 function reload(){if(phase!=='live'||reloadLeft>0||ammo>=(weapon==='CLASSIC'?12:weapon==='OPERATOR'?5:25)||reserve<=0)return;reloadLeft=weapon==='OPERATOR'?2.7:1.8;toast('RELOADING')}
-function playerDamage(dmg){if(phase!=='live')return;const absorb=Math.min(armor,dmg*.55);armor-=absorb;health=Math.max(0,health-(dmg-absorb));updateHud();if(health<=0)hitAgent(player,1)}
+function playerDamage(dmg){if(phase!=='live')return;const absorb=Math.min(armor,dmg*.55);armor-=absorb;health=Math.max(0,health-(dmg-absorb));updateHud();if(health<=0)endRound('def','Your agent was eliminated')}
 function collides(x,z,r=.42){for(const c of colliders){if(c.maxY<.5||c.minY>2.2)continue;const nx=Math.max(c.minX,Math.min(x,c.maxX)),nz=Math.max(c.minZ,Math.min(z,c.maxZ));if((x-nx)**2+(z-nz)**2<r*r)return true}return false}
 function moveAgent(a,dx,dz){const nx=a.position.x+dx,nz=a.position.z+dz;if(!collides(nx,a.position.z,.45))a.position.x=nx;if(!collides(a.position.x,nz,.45))a.position.z=nz}
-function lineOfSight(from,to){const d=to.clone().sub(from),dist=d.length();ray.set(from,d.normalize());const walls=ray.intersectObjects(scene.children.filter(o=>o.isMesh&&o.userData.blocksSight!==false),false);return !walls.length||walls[0].distance>dist-.3}
+function lineOfSight(from,to){const d=to.clone().sub(from),dist=d.length(),steps=Math.max(3,Math.ceil(dist*3));for(let i=2;i<steps-2;i++){const p=from.clone().lerp(to,i/steps);if(collides(p.x,p.z,.16))return false}return true}
 function closestEnemy(a){let best=null,dist=1e9;agents.forEach(b=>{if(b.userData.team===a.userData.team||!b.userData.alive)return;const d=a.position.distanceTo(b.position);if(d<dist){best=b;dist=d}});return best}
 function botShoot(a,target,dt){a.userData.shootCD-=dt;if(a.userData.shootCD>0)return;const origin=a.position.clone().add(new THREE.Vector3(0,1.55,0)),targetPos=target.position.clone().add(new THREE.Vector3(0,1.25,0));if(!lineOfSight(origin,targetPos))return;const dist=origin.distanceTo(targetPos),chance=Math.max(.22,.72-dist/70);a.userData.shootCD=.55+Math.random()*.65;if(Math.random()<chance){makeTracer(origin,targetPos,a.userData.team==='atk'?C.cyan:C.red);if(target.userData.isPlayer)playerDamage(a.userData.team==='def'?8:6);else hitAgent(target,Math.random()<.6?10:6)}}
 function botUpdate(dt){
@@ -181,12 +181,12 @@ function botUpdate(dt){
 function objectiveUpdate(dt){
  if(practice){$('objective').textContent='PRACTICE • ELIMINATE TARGETS';return}
  const site=siteMeshes.find(s=>Math.hypot(player.position.x-s.x,player.position.z-s.z)<4.5);
- if(spikeState==='carried'){if(site){plantProgress+=dt;$('hint').textContent='HOLD E TO PLANT SPIKE • '+Math.min(100,Math.floor(plantProgress/2.5*100))+'%';if(plantProgress>=2.5){spikeState='planted';spikeTimer=38;spikeMesh.removeFromParent();spikeMesh.position.set(site.x,.4,site.z);scene.add(spikeMesh);toast('SPIKE PLANTED');$('objective').textContent='SPIKE PLANTED • DEFEND THE SITE';}}else{plantProgress=0;$('hint').textContent='FIND SITE A OR B • HOLD E TO PLANT'}}
+ if(spikeState==='carried'){if(site){if(keys.KeyE)plantProgress+=dt;else plantProgress=Math.max(0,plantProgress-dt*1.4);$('hint').textContent='HOLD E TO PLANT SPIKE • '+Math.min(100,Math.floor(plantProgress/2.5*100))+'%';if(plantProgress>=2.5){spikeState='planted';spikeTimer=38;spikeMesh.removeFromParent();spikeMesh.position.set(site.x,.4,site.z);scene.add(spikeMesh);toast('SPIKE PLANTED');$('objective').textContent='SPIKE PLANTED • DEFEND THE SITE';}}else{plantProgress=0;$('hint').textContent='FIND SITE A OR B • HOLD E TO PLANT'}}
  }else if(spikeState==='planted'){spikeTimer-=dt;$('objective').textContent='SPIKE PLANTED • DETONATION IN '+Math.max(0,Math.ceil(spikeTimer))+'s';if(spikeTimer<=0)endRound('atk','Spike detonated')}
  else if(spikeState==='defused'){}
- if(keys.KeyE&&phase==='live'&&site&&spikeState==='carried')plantProgress+=dt*.9;
+
  if(spikeState==='planted'){const defender=agents.find(a=>a.userData.team==='def'&&a.userData.alive&&a.position.distanceTo(spikeMesh.position)<2.8);if(defender){defuseProgress+=dt;if(defuseProgress>5)endRound('def','Spike defused')}else defuseProgress=Math.max(0,defuseProgress-dt*.4)}
- if(!keys.KeyE&&spikeState==='carried')plantProgress=Math.max(0,plantProgress-dt*.8);
+
 }
 function interactionHint(){if(phase!=='live')return;const site=siteMeshes.find(s=>Math.hypot(player.position.x-s.x,player.position.z-s.z)<4.5);if(site&&spikeState==='carried')$('hint').textContent='HOLD E TO PLANT AT '+site.name}
 function update(dt){
