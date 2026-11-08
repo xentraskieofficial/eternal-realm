@@ -120,7 +120,7 @@ function clearAgents(){agents.forEach(a=>scene.remove(a));agents=[]}
 function spawnTeams(){
  clearAgents();
  const atkSpawns=[[-3,34],[-7,35],[1,35],[-11,31],[5,31]],defSpawns=[[-30,-30],[-35,-24],[30,30],[35,24],[0,-30]];
- const playerAgent=makeAgent('atk',true);playerAgent.position.set(0,0,35);scene.add(playerAgent);player=playerAgent;agents.push(playerAgent);
+ const playerAgent=makeAgent('atk',true);playerAgent.position.set(0,0,35);scene.add(playerAgent);player=playerAgent;player.visible=false;agents.push(playerAgent);
  for(let i=1;i<5;i++){const a=makeAgent('atk');a.position.set(atkSpawns[i][0],0,atkSpawns[i][1]);scene.add(a);agents.push(a)}
  for(let i=0;i<5;i++){const a=makeAgent('def');a.position.set(defSpawns[i][0],0,defSpawns[i][1]);scene.add(a);agents.push(a)}
 }
